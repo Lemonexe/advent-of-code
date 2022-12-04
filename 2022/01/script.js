@@ -9,6 +9,7 @@ const lineToNumber = line => {
     return isNaN(num) ? 0 : num;
 }
 const maxItem = arr => arr.reduce((max, elf) => (elf > max) ? elf : max, 0);
+const arrSum = arr => arr.reduce((sum,item) => sum+item,0);
 
 const elves = fileContent
     .split('\n\n')
@@ -16,6 +17,16 @@ const elves = fileContent
         .split('\n')
         .reduce((sum, line) => sum + lineToNumber(line), 0)
     );
+const topThree = elves.reduce(
+    (sums, elf) => {
+        const idx = sums.findIndex(item => item < elf);
+        if(idx < 0) return sums;
+        sums.splice(idx, 0, elf);
+        sums.pop();
+        return sums;
+    },
+    [0,0,0]
+);
 const maxElf = maxItem(elves);
-
 console.log(`elf_max = ${maxElf} cal`);
+console.log(`top three: [${topThree.join(',')}] cal\ntheir sum: ${arrSum(topThree)} cal`);
