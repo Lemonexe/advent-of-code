@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "start": "tsc solve.ts && node solve.js"
+  },
+  "dependencies": {
+    "@types/node": "^20.10.3",
+    "typescript": "^5.2.2"
+  }
+}
