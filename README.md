@@ -5,7 +5,7 @@
 
 how to install and setup?  
 Figure it out, lol!  
-It's written in a diverse range of programming environments to confuse future readers 😘
+It's written in a [diverse range](https://api.github.com/repos/Lemonexe/advent-of-code/languages) of programming environments to confuse future readers 😘
 
 ## 2022
 - 2022-12-**01** nodeJS
