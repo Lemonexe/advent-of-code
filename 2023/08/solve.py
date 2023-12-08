@@ -1,4 +1,6 @@
 import re
+import math
+
 
 lines = []
 with open('input.txt', encoding='utf-8') as file:
@@ -16,32 +18,26 @@ n_seq = len(LR_seq)
 maze = [hashify(line) for line in lines[1:]]
 maze = {key: value for key,value in maze}
 
-def solve1():
+def solve(start, is_end):
     n_moves = 0
-    cursor = 'AAA'
-    while cursor != 'ZZZ':
+    cursor = start
+    while not is_end(cursor):
         next_move = LR_seq[n_moves % n_seq]
         cursor = maze[cursor][next_move]
         # print(f'{next_move} {cursor}')
         n_moves += 1
+    return n_moves
 
+def solve1():
+    n_moves = solve('AAA', lambda c: c == 'ZZZ')
     print(f'1st task: {n_moves} moves')
 
 def solve2():
-    n_moves = 0
     cursors = [key for key in maze if re.match(r'..A', key)]
-    # print(cursors)
-    while not all(re.match(r'..Z', c) for c in cursors):
-        next_move = LR_seq[n_moves % n_seq]
-        # print(f'{next_move} ', end='')
-        for i,c in enumerate(cursors):
-            cursors[i] = maze[c][next_move]
-            # print(f' {cursors[i]}', end='')
-        # print('')
-        n_moves += 1
-        if n_moves % 1e6 == 0: print(n_moves)
-
-    print(f'2st task: {n_moves} moves')
+    is_end = lambda c: re.match(r'..Z', c)
+    n_moves = [solve(c, is_end) for c in cursors]
+    lcm = math.lcm(*n_moves)
+    print(f'2st task: {lcm:.0f} moves')
 
 solve1()
 solve2()
