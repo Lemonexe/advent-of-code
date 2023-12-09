@@ -22,3 +22,5 @@ It's written in a [diverse range](https://api.github.com/repos/Lemonexe/advent-o
 - 2023-12-**06** matlab
 - 2023-12-**07** browser JS
 - 2023-12-**08** python
+- 2023-12-**09** python
+- 2023-12-**10** nodeJS
